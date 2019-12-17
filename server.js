@@ -44,6 +44,7 @@ function getBookInfo(request, response){
       for (let i = 0; i < 10; i++){
         tenBooksArray.push(res.body.items[i]);
       }
+      // console.log(tenBooksArray);
       let bookArray = tenBooksArray.map(book => {
         return new Book(book.volumeInfo);
       });
@@ -54,10 +55,16 @@ function getBookInfo(request, response){
 }
 
 
+
 function Book(bookObj){
-  // const placeholderImage = `https://i.imgur.com/J5LVHEL.jpg`;
-  this.title = bookObj.items.volumeinfo.title || 'no title available';
-  this.author = bookObj.items.volumeinfo.authors || 'no author available';
+  const placeholderImage = `https://i.imgur.com/J5LVHEL.jpg`;
+  this.image = placeholderImage;
+  bookObj.title !== null ? this.title = bookObj.title : this.title = 'no title available';
+  // this.title = bookObj.title || 'no title available';
+  bookObj.author !== null ? this.author = bookObj.author : this.author = 'no author available';
+  // this.author = bookObj.authors || 'no author available';
+  bookObj.description !== null ? this.description = bookObj.description : this.description = 'no description available';
+  // this.description = bookObj.description || 'no description available';
 }
 
 
