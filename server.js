@@ -14,12 +14,12 @@ app.get('/', getForm);
 app.post('/searches', getBookInfo);
 
 function getForm(request, response){
-  response.render('pages/index');
+  response.render('index');
 }
 
 function getBookInfo(request, response){
 
-  let url = 'https://www.googleapis.com/books/v1/volumes?q='
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
   // {
   //   "search": [
   //   "hatchet",
@@ -40,11 +40,11 @@ function getBookInfo(request, response){
   superagent.get(url)
     .then(res => {
       let bookArray = res.body.items.map(book => {
-        return new Book(book.volumeInfo)
+        return new Book(book.volumeInfo);
       });
 
       response.render('pages/searches/show');
-    })
+    });
 }
 
   
