@@ -1,0 +1,28 @@
+{
+  "name": "book_app",
+  "version": "1.0.0",
+  "description": "Book-search app",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "superagent": "^5.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trannon1/book_app.git"
+  },
+  "author": "Bryan Tran, Steven Miyauchi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trannon1/book_app/issues"
+  },
+  "homepage": "https://github.com/trannon1/book_app#readme"
+}
