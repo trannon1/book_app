@@ -5,7 +5,7 @@ const app = express();
 require('ejs');
 const superagent = require('superagent');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded ({ extended: true, }));
