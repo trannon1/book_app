@@ -49,8 +49,7 @@ function getBookInfo(request, response){
         return new Book(book.volumeInfo);
       });
       console.log(bookArray);
-
-      response.render('pages/searches/show');
+    response.render('pages/searches/show', {bookArray: bookArray});
     });
 }
 
@@ -58,15 +57,23 @@ function getBookInfo(request, response){
 
 function Book(bookObj){
   const placeholderImage = `https://i.imgur.com/J5LVHEL.jpg`;
-  this.image = placeholderImage;
+  bookObj.imageLinks.thumbnail !== null ? this.image = bookObj.imageLinks.thumbnail : this.image = placeholderImage;
+  this.image.substring(0,5) != 'https'? this.image = this.image.substring(0,4) + 's' + this.image.substring(4, this.image.length): this.image;
   bookObj.title !== null ? this.title = bookObj.title : this.title = 'no title available';
-  // this.title = bookObj.title || 'no title available';
-  bookObj.author !== null ? this.author = bookObj.author : this.author = 'no author available';
-  // this.author = bookObj.authors || 'no author available';
+  bookObj.authors !== null ? this.authors = bookObj.authors : this.authors = 'no author available';
   bookObj.description !== null ? this.description = bookObj.description : this.description = 'no description available';
-  // this.description = bookObj.description || 'no description available';
 }
 
+// Book.prototype.render = function () {
+//   const myTemplate = $('#book-template').html();
+//   const $newSection = $('<section></section>');
+//   $newSection.html(myTemplate);
+//   $newSection.find('img').attr('src', this.image);
+//   $newSection.find('h1').text(this.title);
+//   $newSection.find('h2').text(this.author);
+//   $newSection.find('p').text(this.description);
+//   $('main').append($newSection);
+// }
 
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
