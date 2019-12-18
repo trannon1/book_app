@@ -5,21 +5,24 @@ require('dotenv').config();
 const app = express();
 require('ejs');
 const superagent = require('superagent');
-// const client = require('./lib/client');
-const pg = require('pg');
-const client = new pg.Client(process.env.DATABASE_URL);
+const client = require('./lib/client');
 
 const PORT = process.env.PORT || 3001;
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded ({ extended: true, }));
 
-app.get('/', getForm);
+app.get('/', getIndex);
 app.post('/searches', getBookInfo);
-var sqr = $('.square');
+app.get('/searches/new', getForm);
+app.post('/', insertIntoDatabase);
+
+function getIndex(request, response){
+  response.render('index');
+}
 
 function getForm(request, response){
-  response.render('index');
+  response.render('pages/searches/new');
 }
 
 function getBookInfo(request, response){
@@ -49,18 +52,9 @@ function getBookInfo(request, response){
     });
 }
 
-sqr.on('click', (e) => {
-  const sql = `INSERT INTO bookshelf (author, title, isbn, image_url, description, bookshelf)`
-  // this.li[0] = title; 
-  safeValues = [this.li[0]]
-});
-
-// const locationObject = new Location(location, results.body.results[0]);
-        
-//             const sql = `INSERT INTO location (search_query, formatted_query, latitude, longitude) VALUES ($1, $2, $3, $4);`;
-//             const safeValues = [locationObject.search_query, locationObject.formatted_query, locationObject.latitude, locationObject.longitude];
-
-//             client.query(sql, safeValues)
+function insertIntoDatabase(request, response){
+  console.log(request.body.book);
+}
 
 function Book(bookObj){
   const placeholderImage = `https://i.imgur.com/J5LVHEL.jpg`;
