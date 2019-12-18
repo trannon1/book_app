@@ -14,11 +14,13 @@
     <div>
         <ul>
             <% bookArray.forEach(book => { %>
-                <img src=<%= book.image %>>
-                <li><%= book.title %></li>
-                <li><%= book.authors %></li>
-                <li><%= book.description %></li>
-                <li><%= book.isbn %></li>
+                <div class="square">
+                    <img src=<%= book.image %>>
+                    <li><%= book.title %></li>
+                    <li><%= book.authors %></li>
+                    <li><%= book.description %></li>
+                    <li><%= book.isbn %></li>
+                </div>
             <% }) %>
         </ul>
     </div>
