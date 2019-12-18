@@ -48,8 +48,16 @@
   <board>
     <div>
         <ul>
-          <square>
-          </square>
+            <% bookArray.forEach(book => { %>
+              <div class="square">
+                      <img src=<%= book.image %>>
+                      <li><%= book.title %></li>
+                      <li><%= book.authors %></li>
+                      <li><%= book.description %></li>
+                      <li><%= book.isbn %></li>
+                      <li><%= book.bookshelf %></li>
+              </div>
+          <% }) %>
         </ul>
     </div>
   </board>

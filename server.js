@@ -12,14 +12,15 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded ({ extended: true, }));
 
-app.get('/', getIndex);
+// app.get('/', getIndex);
+app.get('/', getBooks);
 app.post('/searches', getBookInfo);
 app.get('/searches/new', getForm);
 app.post('/', insertIntoDatabase);
 
-function getIndex(request, response){
-  response.render('index');
-}
+// function getIndex(request, response){
+//   response.render('index');
+// }
 
 function getForm(request, response){
   response.render('pages/searches/new');
@@ -52,8 +53,29 @@ function getBookInfo(request, response){
     });
 }
 
+function getBooks(request, response){
+  let sql = 'SELECT * FROM bookshelf;';
+  client.query(sql)
+    .then(results => {
+      let bookArray = [];
+      let bookObjectArray = results.rows;
+      // console.log(results.rows);
+      bookArray = bookObjectArray.map(book =>{
+        return new Book2(book);
+      });
+      response.render('pages/index', {bookArray: bookArray});
+    })
+}
+
 function insertIntoDatabase(request, response){
-  console.log(request.body.book);
+  // console.log(request.body.book);
+
+  let sql = 'INSERT INTO bookshelf (authors, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);';
+  let safeValues = [request.body.book[1], request.body.book[0], request.body.book[2], request.body.book[3], request.body.book[5], request.body.book[4]];
+
+  client.query(sql, safeValues);
+
+  response.redirect('/');
 }
 
 function Book(bookObj){
@@ -64,6 +86,15 @@ function Book(bookObj){
   bookObj.authors !== null ? this.authors = bookObj.authors : this.authors = 'no author available';
   bookObj.description !== null ? this.description = bookObj.description : this.description = 'no description available';
   bookObj.industryIdentifiers[1].identifier !== null ? this.isbn = bookObj.industryIdentifiers[1].identifier : this.isbn = 'no isbn available';
+}
+
+function Book2(bookObj){
+  this.image = bookObj.image_url;
+  this.title = bookObj.title;
+  this.authors = bookObj.authors;
+  this.description = bookObj.description;
+  this.isbn = bookObj.isbn;
+  this.bookshelf = bookObj.bookshelf;
 }
 
 app.get('*', (request, response) => {
