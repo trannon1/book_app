@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Book Collection</title>
@@ -10,7 +10,7 @@
   <body>
     <main>
       <h4>Search for books</h4>
-      <!-- action visits the route and method is the route method -->
+      action visits the route and method is the route method
       <form action='/searches' method='post'>
         <input type="text" name="search" placeholder="Enter a title or author" required>
         <fieldset>
@@ -30,4 +30,35 @@
       </form>
     </main>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" text="text/css" href="../../styles/reset.css" />
+    <link rel="stylesheet" text="text/css" href="../../styles/base.css" />
+    <link rel="stylesheet" text="text/css" href="../../styles/layout.css" />
+    <link rel="stylesheet" text="text/css" href="../../styles/modules.css" />
+</head>
+<body>
+  <board>
+    <div>
+        <ul>
+          <square>
+            <% bookArray.forEach(book => { %>
+                <img src=<%= book.image %>>
+                <li><%= book.title %></li>
+                <li><%= book.authors %></li>
+                <li><%= book.description %></li>
+                <li><%= book.isbn %></li>
+            <% }) %>
+          </square>
+        </ul>
+    </div>
+  </board>
+</body>
 </html>

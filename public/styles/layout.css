@@ -7,3 +7,11 @@ body {
 	text-align: center;
 	text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
   }
+
+  .board {
+	height: 1065px;
+	display: grid;
+	grid-template-columns: 50%;
+	grid-template-rows: 1/7;
+	grid-auto-flow: row;
+  }
