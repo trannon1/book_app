@@ -49,16 +49,10 @@
     <div>
         <ul>
           <square>
-            <% bookArray.forEach(book => { %>
-                <img src=<%= book.image %>>
-                <li><%= book.title %></li>
-                <li><%= book.authors %></li>
-                <li><%= book.description %></li>
-                <li><%= book.isbn %></li>
-            <% }) %>
           </square>
         </ul>
     </div>
   </board>
+  <button onclick="location.href = 'searches/new';">Go to search</button>
 </body>
 </html>
