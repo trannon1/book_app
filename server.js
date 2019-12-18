@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 require('ejs');
 const superagent = require('superagent');
+const client = require('./lib/client');
 
 const PORT = process.env.PORT || 3001;
 app.use(express.static('./public'));
@@ -13,7 +14,6 @@ app.use(express.urlencoded ({ extended: true, }));
 app.get('/', getForm);
 app.post('/searches', getBookInfo);
 
-
 function getForm(request, response){
   response.render('index');
 }
@@ -21,12 +21,6 @@ function getForm(request, response){
 function getBookInfo(request, response){
 
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
-  // {
-  //   "search": [
-  //   "hatchet",
-  //   "title"
-  //   ]
-  //   }
   let typeOfSearch = request.body.search[1];
   let searchCriteria = request.body.search[0];
 
@@ -44,16 +38,12 @@ function getBookInfo(request, response){
       for (let i = 0; i < 10; i++){
         tenBooksArray.push(res.body.items[i]);
       }
-      // console.log(tenBooksArray);
       let bookArray = tenBooksArray.map(book => {
         return new Book(book.volumeInfo);
       });
-      console.log(bookArray);
     response.render('pages/searches/show', {bookArray: bookArray});
     });
 }
-
-
 
 function Book(bookObj){
   const placeholderImage = `https://i.imgur.com/J5LVHEL.jpg`;
@@ -62,18 +52,22 @@ function Book(bookObj){
   bookObj.title !== null ? this.title = bookObj.title : this.title = 'no title available';
   bookObj.authors !== null ? this.authors = bookObj.authors : this.authors = 'no author available';
   bookObj.description !== null ? this.description = bookObj.description : this.description = 'no description available';
+  bookObj.industryIdentifiers[1].identifier !== null ? this.isbn = bookObj.industryIdentifiers[1].identifier : this.isbn = 'no isbn available';
 }
 
-// Book.prototype.render = function () {
-//   const myTemplate = $('#book-template').html();
-//   const $newSection = $('<section></section>');
-//   $newSection.html(myTemplate);
-//   $newSection.find('img').attr('src', this.image);
-//   $newSection.find('h1').text(this.title);
-//   $newSection.find('h2').text(this.author);
-//   $newSection.find('p').text(this.description);
-//   $('main').append($newSection);
-// }
+// const locationObject = new Location(location, results.body.results[0]);
+        
+//             const sql = `INSERT INTO location (search_query, formatted_query, latitude, longitude) VALUES ($1, $2, $3, $4);`;
+//             const safeValues = [locationObject.search_query, locationObject.formatted_query, locationObject.latitude, locationObject.longitude];
 
+//             client.query(sql, safeValues)
 
-app.listen(PORT, () => console.log(`listening on ${PORT}`));
+app.get('*', (request, response) => {
+  response.status(404).render('pages/error');
+});
+
+client.connect()
+  .then( () => {
+    app.listen(PORT, () => console.log(`App is on port ${PORT}`));
+  })
+  .catch( err => console.error(err));
