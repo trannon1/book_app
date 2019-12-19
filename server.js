@@ -71,6 +71,19 @@ function getBooks(request, response){
     });
 }
 
+function getOneTask(request, response){
+  let id = request.params.task_id;
+  let sql = 'SELECT * FROM tasks WHERE id = $1;';
+  let safeValues = [id];
+
+  client.query(sql, safeValues)
+    .then(results => {
+      let chosenTask = results.rows[0];
+      response.render('pages/details', {taskInfo:chosenTask});
+    })
+  // go to the database, get a specific task using the id of that task and show the details of that task on the detail.ejs page
+}
+
 function insertIntoDatabase(request, response){
   let sql = 'INSERT INTO books (authors, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);';
   let safeValues = [request.body.book[1], request.body.book[0], request.body.book[2], request.body.book[3], request.body.book[5], request.body.book[4]];
