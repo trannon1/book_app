@@ -11,9 +11,10 @@
     <link rel="stylesheet" text="text/css" href="../../styles/modules.css" />
 </head>
 <body>
-  <board>
+  <container>
     <div>
       <h1>Book count : <%= bookArray.length %></h1>
+      <button onclick="location.href = 'searches/new';">Go to search</button>
         <ul>
             <% bookArray.forEach(book => { %>
               <div class="square">
@@ -23,11 +24,12 @@
                       <li>Description: <%= book.description %></li>
                       <li>ISBN: <%= book.isbn %></li>
                       <li>Bookshelf: <%= book.bookshelf %></li>
+                      <a href="/books/<%= book.id %>">Detail View</a>
               </div>
-          <% }) %>
+          <% }) %> 
+          </form>
         </ul>
     </div>
-  </board>
-  <button onclick="location.href = 'searches/new';">Go to search</button>
+  </container>
 </body>
 </html>
