@@ -18,6 +18,7 @@ app.get('/searches/new', getForm);
 app.post('/', insertIntoDatabase);
 app.post('/update/:book_id', updateBook);
 app.get('/books/:book_id', getOneBook);
+// app.delete('/books/:book_id', deleteBook);
 
 function getForm(request, response){
   response.render('pages/searches/new');
@@ -100,7 +101,7 @@ function updateBook(request, response){
   console.log(request.body);
   let {authors, title, isbn, image, description, bookshelf} = request.body;
 
-  let sql = 'UPDATE books SET authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;'
+  let sql = 'UPDATE books SET authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
 
   let id = request.params.book_id;
 
@@ -111,6 +112,20 @@ function updateBook(request, response){
   response.redirect(`/books/${id}`);
   // redirect to the detail page with the new information
 }
+
+// function deleteBook(request, response){
+//   let {authors, title, isbn, image, description, bookshelf} = request.body;
+
+//   let sql = 'DELETE books FROM authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
+
+//   let id = request.params.book_id;
+
+//   let safeValues = [authors, title, isb, image, description, bookshelf, id];
+
+//   client.query(sql, safeValues);
+
+//   response.redirect(`/books/${id}`);
+// }
 
 function Book(bookObj){
   const placeholderImage = `https://i.imgur.com/J5LVHEL.jpg`;
