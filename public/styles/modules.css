@@ -7,3 +7,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.editDetails {
+    display: none;
+}
