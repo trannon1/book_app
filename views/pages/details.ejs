@@ -6,6 +6,7 @@
         <link rel="stylesheet" text="text/css" href="../../styles/base.css" />
         <link rel="stylesheet" text="text/css" href="../../styles/layout.css" />
         <link rel="stylesheet" text="text/css" href="../../styles/modules.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       </head>
 <body>
     <header>
@@ -24,19 +25,25 @@
     <p>Bookshelf: <%= book.bookshelf %></p>
   </container>
 
-  <container>
-  <div class="square">
-    <form action="<%= `/update/${book.id}?_method=PUT` %>" method="post">
-            <input type="text" name="image" value="<%- book.image_url %>" placeholder="Book Image">
-            <input type="text" name="title" value="<%- book.title %>" placeholder="Book Name">
-            <input type="text" name="authors" value="<%- book.authors %>" placeholder="Book Authors">
-            <input type="text" name="description" value="<%- book.description %>" placeholder="Book Description">
-            <input type="text" name="isbn" value="<%- book.isbn %>" placeholder="Book ISBN">
-            <input type="text" name="bookshelf" value="<%- book.bookshelf %>" placeholder="Book Bookshelf">
-      <button>submit</button>
-    </form>
-    </div>
-    </container>
+  <button id='edit'>Edit</button>
 
+    <container class='editDetails'>
+    <div class="square">
+            <form action="<%= `/update/${book.id}?_method=PUT` %>" method="post">
+                    <input type="text" name="image" value="<%- book.image_url %>" placeholder="Book Image">
+                    <input type="text" name="title" value="<%- book.title %>" placeholder="Book Name">
+                    <input type="text" name="authors" value="<%- book.authors %>" placeholder="Book Authors">
+                    <input type="text" name="description" value="<%- book.description %>" placeholder="Book Description">
+                    <input type="text" name="isbn" value="<%- book.isbn %>" placeholder="Book ISBN">
+                    <input type="text" name="bookshelf" value="<%- book.bookshelf %>" placeholder="Book Bookshelf">
+            <button>submit</button>
+            </form>
+        </div>
+    </container>
+    <script>
+        $('#edit').click(function () {
+          $('#editDetails').toggle();
+        });
+    </script>
 </body>
 </html>
