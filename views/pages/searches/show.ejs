@@ -11,7 +11,15 @@
     <link rel="stylesheet" text="text/css" href="../../styles/modules.css" />
 </head>
 <body>
+    <header>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </header>
     <div>
+        <container>
         <ul>
             <% bookArray.forEach(book => { %>
                 <div class="square">
@@ -32,6 +40,7 @@
                 </div>
             <% }) %>
         </ul>
+        </container>
     </div>
 </body>
 </html>

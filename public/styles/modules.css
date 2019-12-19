@@ -1,7 +1,9 @@
 .square {
     border: 1px solid black;
-    margin: 0;
-    display: block;
-    width: minmax(50px, 100%);
-    height: minmax(50px, 100%);
+    margin: 30px;
+    display: grid;
+    grid-template-columns: minmax(300px, 70%);
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
 }
