@@ -31,14 +31,14 @@
                         <li>ISBN: <%= book.isbn %></li>
                     <button class='edit' id="<%= book.isbn %>">Edit</button>
                     <div class='editDetails' id="<%= book.isbn %>">
-                        <form action='/' method='post' id=<%= book.isbn %>></form>
+                        <form action='/' method='post' id=book>
                             <input type="text" name="book" placeholder="Enter the title" value="<%= book.title %>" required>
                             <input type="text" name="book" placeholder="Enter the author" value="<%= book.authors %>" required>
                             <input type="text" name="book" placeholder="Enter isbn" value="<%= book.isbn %>" required>
                             <input type="text" name="book" placeholder="Enter image_url" value="<%= book.image %>">
                             <input type="text" name="book" placeholder="Enter a bookshelf" required>
                             <input type="text" size=100 name="book" placeholder="Enter the description" value="<%= book.description %>">
-                            <button type="submit">Insert into database</button>
+                        <button type="submit">Insert into database</button>
                         </form>
                     </div>
                 </div>

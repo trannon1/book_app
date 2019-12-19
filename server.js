@@ -88,7 +88,7 @@ function getOneBook(request, response){
 
 function insertIntoDatabase(request, response){
   
-  let sql = 'INSERT INTO books (authors, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);';
+  let sql = 'INSERT INTO books (authors, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);'
   let safeValues = [request.body.book[1], request.body.book[0], request.body.book[2], request.body.book[3], request.body.book[5], request.body.book[4]];
 
   client.query(sql, safeValues);
@@ -100,7 +100,7 @@ function updateBook(request, response){
   console.log(request.body);
   let {authors, title, isbn, image, description, bookshelf} = request.body;
 
-  let sql = 'UPDATE books SET authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;'
+  let sql = 'UPDATE books SET authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
 
   let id = request.params.book_id;
 
