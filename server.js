@@ -16,6 +16,8 @@ app.get('/', getBooks);
 app.post('/searches', getBookInfo);
 app.get('/searches/new', getForm);
 app.post('/', insertIntoDatabase);
+app.post('/update/:book_id', updateBook);
+app.get('/books/:book_id', getOneBook);
 
 function getForm(request, response){
   response.render('pages/searches/new');
@@ -71,26 +73,43 @@ function getBooks(request, response){
     });
 }
 
-function getOneTask(request, response){
-  let id = request.params.task_id;
-  let sql = 'SELECT * FROM tasks WHERE id = $1;';
+function getOneBook(request, response){
+  let id = request.params.book_id;
+  let sql = 'SELECT * FROM books WHERE id = $1;';
   let safeValues = [id];
 
   client.query(sql, safeValues)
     .then(results => {
-      let chosenTask = results.rows[0];
-      response.render('pages/details', {taskInfo:chosenTask});
+      let chosenBook = results.rows[0];
+      response.render('pages/details', {book:chosenBook});
     })
   // go to the database, get a specific task using the id of that task and show the details of that task on the detail.ejs page
 }
 
 function insertIntoDatabase(request, response){
+  
   let sql = 'INSERT INTO books (authors, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);';
   let safeValues = [request.body.book[1], request.body.book[0], request.body.book[2], request.body.book[3], request.body.book[5], request.body.book[4]];
 
   client.query(sql, safeValues);
 
   response.redirect('/');
+}
+
+function updateBook(request, response){
+  console.log(request.body);
+  let {authors, title, isbn, image, description, bookshelf} = request.body;
+
+  let sql = 'UPDATE books SET authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;'
+
+  let id = request.params.book_id;
+
+  let safeValues = [authors, title, isbn, image, description, bookshelf, id];
+
+  client.query(sql, safeValues);
+
+  response.redirect(`/books/${id}`);
+  // redirect to the detail page with the new information
 }
 
 function Book(bookObj){
