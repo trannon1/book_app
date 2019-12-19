@@ -17,18 +17,17 @@
                 <div class="square">
                     <form action='/' method='post' id='book'>
                         <img src=<%= book.image %>>
-                        <li><%= book.title %></li>
-                        <li><%= book.authors %></li>
-                        <li><%= book.description %></li>
-                        <li><%= book.isbn %></li>
-                        <input type="text" name="book" placeholder="Enter the title" value="<%= book.title %>">
-                        <input type="text" name="book" placeholder="Enter the author" value="<%= book.authors %>">
-                        <input type="text" name="book" placeholder="Enter isbn" value="<%= book.isbn %>">
+                        <li>Title: <%= book.title %></li>
+                        <li>Authors: <%= book.authors %></li>
+                        <li>Description: <%= book.description %></li>
+                        <li>ISBN: <%= book.isbn %></li>
+                        <input type="text" name="book" placeholder="Enter the title" value="<%= book.title %>" required>
+                        <input type="text" name="book" placeholder="Enter the author" value="<%= book.authors %>" required>
+                        <input type="text" name="book" placeholder="Enter isbn" value="<%= book.isbn %>" required>
                         <input type="text" name="book" placeholder="Enter image_url" value="<%= book.image %>">
                         <input type="text" name="book" placeholder="Enter a bookshelf" required>
                         <button type="submit">Insert into database</button>
                         <input type="text" size=100 name="book" placeholder="Enter the description" value="<%= book.description %>">
-                        <!-- <textarea cols=10 name="description" form="book">Enter descripton here...</textarea> -->
                     </form>
                 </div>
             <% }) %>

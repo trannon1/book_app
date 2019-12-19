@@ -1,37 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Book Collection</title>
-    <link rel="stylesheet" text="text/css" href="../../styles/reset.css" />
-    <link rel="stylesheet" text="text/css" href="../../styles/base.css" />
-    <link rel="stylesheet" text="text/css" href="../../styles/layout.css" />
-    <link rel="stylesheet" text="text/css" href="../../styles/modules.css" />
-  </head>
-  <body>
-    <main>
-      <h4>Search for books</h4>
-      action visits the route and method is the route method
-      <form action='/searches' method='post'>
-        <input type="text" name="search" placeholder="Enter a title or author" required>
-        <fieldset>
-          <label for="title">
-            <span>Title</span>
-            <input type="radio" name="search" value="title" required>
-          </label>
-        </fieldset>
-
-        <fieldset>
-            <label for="author">
-              <span>Author</span>
-              <input type="radio" name="search" value="author" required>
-            </label>
-          </fieldset>
-          <button type="submit">Search the Google Books API</button>
-      </form>
-    </main>
-  </body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,15 +13,16 @@
 <body>
   <board>
     <div>
+      <h1>Book count : <%= bookArray.length %></h1>
         <ul>
             <% bookArray.forEach(book => { %>
               <div class="square">
-                      <img src=<%= book.image %>>
-                      <li><%= book.title %></li>
-                      <li><%= book.authors %></li>
-                      <li><%= book.description %></li>
-                      <li><%= book.isbn %></li>
-                      <li><%= book.bookshelf %></li>
+                      <img src=<%= book.image_url %>>
+                      <li>Title: <%= book.title %></li>
+                      <li>Authors: <%= book.authors %></li>
+                      <li>Description: <%= book.description %></li>
+                      <li>ISBN: <%= book.isbn %></li>
+                      <li>Bookshelf: <%= book.bookshelf %></li>
               </div>
           <% }) %>
         </ul>
