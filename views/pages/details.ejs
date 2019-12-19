@@ -25,7 +25,7 @@
     <p>Bookshelf: <%= book.bookshelf %></p>
   </container>
 
-  <button id='edit'>Edit</button>
+  <button class='edit'>Edit</button>
 
     <container class='editDetails'>
     <div class="square">
@@ -41,8 +41,8 @@
         </div>
     </container>
     <script>
-        $('#edit').click(function () {
-          $('#editDetails').toggle();
+        $('.edit').click(function () {
+          $('.editDetails').toggle();
         });
     </script>
 </body>

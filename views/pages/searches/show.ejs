@@ -31,7 +31,7 @@
                         <li>ISBN: <%= book.isbn %></li>
                     <button class='edit' id="<%= book.isbn %>">Edit</button>
                     <div class='editDetails' id="<%= book.isbn %>">
-                        <form action='/' method='post' id='book'></form>
+                        <form action='/' method='post' id=<%= book.isbn %>></form>
                             <input type="text" name="book" placeholder="Enter the title" value="<%= book.title %>" required>
                             <input type="text" name="book" placeholder="Enter the author" value="<%= book.authors %>" required>
                             <input type="text" name="book" placeholder="Enter isbn" value="<%= book.isbn %>" required>
@@ -46,11 +46,11 @@
         </ul>
         </container>
     </div>
-    <!-- <script>
-        $('#edit').click(function () {
-            event.target.id
-          $('#editDetails.').toggle();
+    <script>
+        $('.edit').click(function () {
+            let id = event.target.id;
+          $(`#${id}.editDetails`).toggle();
         });
-    </script> -->
+    </script>
 </body>
 </html>
