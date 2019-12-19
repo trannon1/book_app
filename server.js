@@ -134,7 +134,7 @@ function Book(bookObj){
   bookObj.title !== null ? this.title = bookObj.title : this.title = 'no title available';
   bookObj.authors !== null ? this.authors = bookObj.authors : this.authors = 'no author available';
   bookObj.description !== null ? this.description = bookObj.description : this.description = 'no description available';
-  bookObj.industryIdentifiers[1].identifier !== null ? this.isbn = bookObj.industryIdentifiers[1].identifier : this.isbn = 'no isbn available';
+  bookObj.industryIdentifiers[0].identifier !== null ? this.isbn = bookObj.industryIdentifiers[0].identifier : this.isbn = 'no isbn available';
 }
 
 app.get('*', (request, response) => {
