@@ -1,21 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Book Detail</title>
-        <link rel="stylesheet" text="text/css" href="../../styles/reset.css" />
-        <link rel="stylesheet" text="text/css" href="../../styles/base.css" />
-        <link rel="stylesheet" text="text/css" href="../../styles/layout.css" />
-        <link rel="stylesheet" text="text/css" href="../../styles/modules.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      </head>
+  <%- include('../layout/head') %>
 <body>
-    <header>
-        <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-          </ul>
-        </nav>
-      </header>
+  <%- include('../layout/header') %>
   <container>
     <img src=<%= book.image_url %>>
     <p>Title: <%= book.title %></p>
