@@ -18,7 +18,8 @@ app.get('/searches/new', getForm);
 app.post('/', insertIntoDatabase);
 app.post('/update/:book_id', updateBook);
 app.get('/books/:book_id', getOneBook);
-// app.delete('/books/:book_id', deleteBook);
+app.put('/books/:book_id', updateBook);
+app.delete('/books/:book_id', deleteBook);
 
 function getForm(request, response){
   response.render('pages/searches/new');
@@ -47,10 +48,10 @@ function getBookInfo(request, response){
       let bookArray = tenBooksArray.map(book => {
         return new Book(book.volumeInfo);
       });
-    response.render('pages/searches/show', {bookArray: bookArray});
+      response.render('pages/searches/show', {bookArray: bookArray});
     })
     .catch(error => {
-      console.log(error)
+      console.log(error);
       response.render('pages/error');
     });
 }
@@ -69,7 +70,7 @@ function getBooks(request, response){
       }
     })
     .catch(error => {
-      console.log(error)
+      console.log(error);
       response.render('pages/error');
     });
 }
@@ -83,13 +84,12 @@ function getOneBook(request, response){
     .then(results => {
       let chosenBook = results.rows[0];
       response.render('pages/details', {book:chosenBook});
-    })
+    });
   // go to the database, get a specific task using the id of that task and show the details of that task on the detail.ejs page
 }
 
 function insertIntoDatabase(request, response){
-  
-  let sql = 'INSERT INTO books (authors, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);'
+  let sql = 'INSERT INTO books (authors, title, isbn, image_url, description, bookshelf) VALUES ($1, $2, $3, $4, $5, $6);';
   let safeValues = [request.body.book[1], request.body.book[0], request.body.book[2], request.body.book[3], request.body.book[5], request.body.book[4]];
 
   client.query(sql, safeValues);
@@ -113,19 +113,18 @@ function updateBook(request, response){
   // redirect to the detail page with the new information
 }
 
-// function deleteBook(request, response){
-//   let {authors, title, isbn, image, description, bookshelf} = request.body;
+function deleteBook(request, response){
+  let sql = `DELETE FROM books WHERE id = $1;`;
+  let id = request.params.book_id;
 
-//   let sql = 'DELETE books FROM authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
-
-//   let id = request.params.book_id;
-
-//   let safeValues = [authors, title, isb, image, description, bookshelf, id];
-
-//   client.query(sql, safeValues);
-
-//   response.redirect(`/books/${id}`);
-// }
+  client.query(sql, id)
+    .then(() => {
+      response.redirect('/');
+    })
+    .catch(error => {
+      handleError(error, response);
+    });
+}
 
 function Book(bookObj){
   const placeholderImage = `https://i.imgur.com/J5LVHEL.jpg`;
@@ -137,12 +136,22 @@ function Book(bookObj){
   bookObj.industryIdentifiers[1].identifier !== null ? this.isbn = bookObj.industryIdentifiers[1].identifier : this.isbn = 'no isbn available';
 }
 
-app.get('*', (request, response) => {
+function handleError(request, response, error) {
+  console.error(error);
   response.status(404).render('pages/error');
-});
+}
+
+// function queryError(error, response) {
+//   console.error(error);
+//   response.render('pages.error').status(503);
+// }
+
+// app.get('*', (request, response) => {
+//   response.status(404).render('pages/error');
+// });
 
 client.connect()
   .then( () => {
-    app.listen(PORT, () => console.log(`App is on port ${PORT}`));
+    app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
   })
   .catch( err => console.error(err));
