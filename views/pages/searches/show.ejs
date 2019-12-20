@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" text="text/css" href="../../styles/reset.css" />
-    <link rel="stylesheet" text="text/css" href="../../styles/base.css" />
-    <link rel="stylesheet" text="text/css" href="../../styles/layout.css" />
-    <link rel="stylesheet" text="text/css" href="../../styles/modules.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-</head>
+    <%- include('../layout/head') %>
 <body>
     <header>
         <nav>
@@ -33,8 +23,8 @@
                     <div class='editDetails' id="<%= book.isbn %>">
                         <form action='/' method='post' id=book>
                             <input type="text" name="book" placeholder="Enter the title" value="<%= book.title %>" required>
-                            <input type="text" name="book" placeholder="Enter the author" value="<%= book.authors %>" required>
-                            <input type="text" name="book" placeholder="Enter isbn" value="<%= book.isbn %>" required>
+                            <input type="text" name="book" placeholder="Enter the author" value="<%= book.authors %>" >
+                            <input type="text" name="book" placeholder="Enter isbn" value="<%= book.isbn %>" readonly>
                             <input type="text" name="book" placeholder="Enter image_url" value="<%= book.image %>">
                             <input type="text" name="book" placeholder="Enter a bookshelf" required>
                             <input type="text" size=100 name="book" placeholder="Enter the description" value="<%= book.description %>">

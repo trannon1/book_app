@@ -6,20 +6,21 @@ const app = express();
 require('ejs');
 const superagent = require('superagent');
 const client = require('./lib/client');
+var methodOverride = require('method-override')
 
 const PORT = process.env.PORT || 3001;
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded ({ extended: true, }));
+app.use(methodOverride('_method'));
 
 app.get('/', getBooks);
 app.post('/searches', getBookInfo);
 app.get('/searches/new', getForm);
 app.post('/', insertIntoDatabase);
-app.post('/update/:book_id', updateBook);
-app.get('/books/:book_id', getOneBook);
-app.put('/books/:book_id', updateBook);
-app.delete('/books/:book_id', deleteBook);
+app.get('/books/:book_isbn', getOneBook);
+app.put('/books/updatebook', updateBook);
+app.delete('/delete/deletebook', deleteBook);
 
 function getForm(request, response){
   response.render('pages/searches/new');
@@ -76,8 +77,8 @@ function getBooks(request, response){
 }
 
 function getOneBook(request, response){
-  let id = request.params.book_id;
-  let sql = 'SELECT * FROM books WHERE id = $1;';
+  let id = request.params.book_isbn;
+  let sql = 'SELECT * FROM books WHERE isbn = $1;';
   let safeValues = [id];
 
   client.query(sql, safeValues)
@@ -98,26 +99,24 @@ function insertIntoDatabase(request, response){
 }
 
 function updateBook(request, response){
-  console.log(request.body);
   let {authors, title, isbn, image, description, bookshelf} = request.body;
 
-  let sql = 'UPDATE books SET authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE id=$7;';
+  let sql = 'UPDATE books SET authors=$1, title=$2, isbn=$3, image_url=$4, description=$5, bookshelf=$6 WHERE isbn=$7;';
 
-  let id = request.params.book_id;
-
-  let safeValues = [authors, title, isbn, image, description, bookshelf, id];
+  let safeValues = [authors, title, isbn, image, description, bookshelf, isbn];
 
   client.query(sql, safeValues);
 
-  response.redirect(`/books/${id}`);
+  response.redirect(`/books/${isbn}`);
   // redirect to the detail page with the new information
 }
 
 function deleteBook(request, response){
-  let sql = `DELETE FROM books WHERE id = $1;`;
-  let id = request.params.book_id;
+  let sql = `DELETE FROM books WHERE isbn = $1;`;
+  let isbn = request.body.isbn;
+  let safeValues = [isbn];
 
-  client.query(sql, id)
+  client.query(sql, safeValues)
     .then(() => {
       response.redirect('/');
     })
