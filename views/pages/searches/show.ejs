@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../layout/head') %>
+    <%- include('../../layout/head') %>
 <body>
-    <header>
-        <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-          </ul>
-        </nav>
-      </header>
+    <%- include('../../layout/header') %>
     <div>
         <container>
-        <ul>
             <% bookArray.forEach(book => { %>
                 <div class="square">
+                    <ul>
                         <img src=<%= book.image %>>
                         <li>Title: <%= book.title %></li>
                         <li>Authors: <%= book.authors %></li>
                         <li>Description: <%= book.description %></li>
                         <li>ISBN: <%= book.isbn %></li>
+                    </ul>
                     <button class='edit' id="<%= book.isbn %>">Edit</button>
                     <div class='editDetails' id="<%= book.isbn %>">
                         <form action='/' method='post' id=book>
@@ -33,7 +28,6 @@
                     </div>
                 </div>
             <% }) %>
-        </ul>
         </container>
     </div>
     <script>
