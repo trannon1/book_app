@@ -29,14 +29,18 @@
 
     <container class='editDetails'>
     <div class="square">
-            <form action="<%= `/update/${book.id}?_method=PUT` %>" method="post">
-                    <input type="text" name="image" value="<%- book.image_url %>" placeholder="Book Image">
-                    <input type="text" name="title" value="<%- book.title %>" placeholder="Book Name">
+            <form action="<%= '/books/updatebook?_method=PUT' %>" method="post">
+                    <input type="text" name="image" value="<%- book.image_url %>" placeholder="Book Image" required>
+                    <input type="text" name="title" value="<%- book.title %>" placeholder="Book Name" required>
                     <input type="text" name="authors" value="<%- book.authors %>" placeholder="Book Authors">
                     <input type="text" name="description" value="<%- book.description %>" placeholder="Book Description">
-                    <input type="text" name="isbn" value="<%- book.isbn %>" placeholder="Book ISBN">
-                    <input type="text" name="bookshelf" value="<%- book.bookshelf %>" placeholder="Book Bookshelf">
-            <button>submit</button>
+                    <input type="text" name="isbn" value="<%- book.isbn %>" placeholder="Book ISBN" readonly>
+                    <input type="text" name="bookshelf" value="<%- book.bookshelf %>" placeholder="Book Bookshelf" required>
+            <button type="submit">submit</button>
+            </form>
+            <form action="<% `/delete/deletebook?_method=DELETE` %>" method="post">
+              
+              <button type="submit">delete</button>
             </form>
         </div>
     </container>
