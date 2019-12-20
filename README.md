@@ -26,12 +26,112 @@ This app uses cors, express, superagent, ejs, and dotenv as dependencies. The la
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
-Number and name of feature: 
+Number and name of feature: Render the home page
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 30 minutes
 
-Start time: 
+Start time: 9:00am
 
-Finish time: 
+Finish time: 9:45am
 
-Actual time needed to complete: 
+Actual time needed to complete: 45 minutes
+
+
+Number and name of feature: Search for books
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 9:50am
+
+Finish time: 10:50am
+
+Actual time needed to complete: 1 hour
+
+
+Number and name of feature: Constructor function
+
+Estimate of time needed to complete: 15 minutes
+
+Start time: 11:00am
+
+Finish time: 11:15am
+
+Actual time needed to complete: 15 minutes
+
+
+Number and name of feature: Add route handler to search page
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 11:30am
+
+Finish time: 1:00pm
+
+Actual time needed to complete: 1 hour 30 minutes
+
+
+Number and name of feature: Insert into Database
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 9:00am
+
+Finish time: 12:00pm
+
+Actual time needed to complete: 3 hours
+
+
+Number and name of feature: Render books from database on index page
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 12:30pm
+
+Finish time: 1:30pm
+
+Actual time needed to complete: 1 hour
+
+
+Number and name of feature: Add book details page
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 9:00am
+
+Finish time: 10:00am
+
+Actual time needed to complete: 1 hour
+
+
+Number and name of feature: Add edit button and functionality
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 10:00am
+
+Finish time: 1:00pm
+
+Actual time needed to complete: 3 hours
+
+
+Number and name of feature: Delete button
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 10:00am
+
+Finish time: 12:00pm
+
+Actual time needed to complete: 2 hours
+
+
+
+Number and name of feature: Partials
+
+Estimate of time needed to complete: 30 minutes
+
+Start time: 12:30pm
+
+Finish time: 1:00pm
+
+Actual time needed to complete: 30 minutes
