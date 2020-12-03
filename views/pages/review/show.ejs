@@ -8,13 +8,12 @@
             <% bookArray.forEach(book => { %>
                 <div class="square">
                     <ul>
-                        <img src=<%= book.image %>>
-                        <li>Title: <%= book.title %></li>
-                        <li>Authors: <%= book.authors %></li>
-                        <li>Description: <%= book.description %></li>
-                        <li>ISBN: <%= book.isbn %></li>
+                        <li>Name: <%= recruiter.name %></li>
+                        <li>Company: <%= recruiter.company %></li>
+                        <li>Address: <%= recruiter.addr %></li>
+                        <li>Review: <%= recruiter.review %></li>
                     </ul>
-                    <button class='edit' id="<%= book.isbn %>">Edit</button>
+                    <!-- <button class='edit' id="<%= book.isbn %>">Edit</button>
                     <div class='editDetails' id="<%= book.isbn %>">
                         <form action='/' method='post' id=book>
                             <input type="text" name="book" placeholder="Enter the title" value="<%= book.title %>" required>
@@ -25,7 +24,7 @@
                             <input type="text" size=100 name="book" placeholder="Enter the description" value="<%= book.description %>">
                         <button type="submit">Insert into database</button>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
             <% }) %>
         </container>

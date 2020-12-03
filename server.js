@@ -1,11 +1,11 @@
 'use strict';
 
-const express = require('express');
-require('dotenv').config();
-const app = express();
-require('ejs');
-const superagent = require('superagent');
-const client = require('./lib/client');
+const express = require('express')
+require('dotenv').config()
+const app = express()
+require('ejs')
+const superagent = require('superagent')
+const client = require('./lib/client')
 var methodOverride = require('method-override')
 
 const PORT = process.env.PORT || 3001;

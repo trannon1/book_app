@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../../layout/head') %>
+  <body>
+    <%- include('../../layout/header') %>
+    <main>
+      <h4>Write new review</h4>
+      <form action='/' method='post' id=recruiter>
+        <input type="text" name="recruiter" placeholder="Enter the name" value="<%= recruiter.name %>" required>
+        <input type="text" name="recruiter" placeholder="Enter the company" value="<%= recruiter.company %>" >
+        <input type="text" name="recruiter" placeholder="Enter company address" value="<%= recruiter.addr %>">
+        <input type="text" size=100 name="recruiter" placeholder="Enter review" value="<%= recruiter.review %>">
+    <button type="submit">Insert into database</button>
+    </form>
+
+      <!-- action visits the route and method is the route method -->
+      <!-- <form action='/searches' method='post'>
+        <input type="text" name="search" placeholder="Enter a title or author" required>
+        <fieldset>
+          <label for="title">
+            <span>Title</span>
+            <input type="radio" name="search" value="title" required>
+          </label>
+        </fieldset>
+
+        <fieldset>
+            <label for="author">
+              <span>Author</span>
+              <input type="radio" name="search" value="author" required>
+            </label>
+          </fieldset>
+          <button type="submit">Search the Google recruiters API</button>
+      </form> -->
+    </main>
+  </body>
+</html>

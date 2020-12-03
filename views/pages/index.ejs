@@ -5,18 +5,16 @@
   <%- include('../layout/header') %>
   <container>
     <div>
-      <h1>Book count : <%= bookArray.length %></h1>
-      <button onclick="location.href = 'searches/new';">Go to search</button>
+      <button onclick="location.href = 'review/new';">Add New Review</button>
+      <h1>recruiter count : <%= recruiterArray.length %></h1>
         <ul>
-            <% bookArray.forEach(book => { %>
+            <% recruiterArray.forEach(recruiter => { %>
               <div class="square">
-                      <img src=<%= book.image_url %>>
-                      <li>Title: <%= book.title %></li>
-                      <li>Authors: <%= book.authors %></li>
-                      <li>Description: <%= book.description %></li>
-                      <li>ISBN: <%= book.isbn %></li>
-                      <li>Bookshelf: <%= book.bookshelf %></li>
-                      <a href="/books/<%= book.isbn %>">Detail View</a>
+                      <li>Name: <%= recruiter.name %></li>
+                      <li>Company: <%= recruiter.company %></li>
+                      <li>Address: <%= recruiter.address %></li>
+                      <li>Review: <%= recruiter.review %></li>
+                      <a href="/recruiters/<%= recruiter.name %>">Detail View</a>
               </div>
           <% }) %> 
           </form>
